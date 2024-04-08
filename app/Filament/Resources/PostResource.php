@@ -10,8 +10,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 
 class PostResource extends Resource
@@ -38,7 +36,8 @@ class PostResource extends Resource
                     ->dehydrateStateUsing(fn ($state) => Auth::id()),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('image')
                     ->image()
-                    ->imageEditor(),
+                    ->imageEditor()
+                    ->optimize('webp'),
             ]);
     }
 
